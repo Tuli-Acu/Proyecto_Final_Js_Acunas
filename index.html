@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PRESTAMOS MOTONETA es un sitio especializado en la liquidación de préstamos al consumo para la adquisición de motos eléctricas y cuidado del medioambiente"> 
+    <meta name="keywords" content="Prestamos, motos, MOTONETA, medioambiente, cuotas, consumo, tasa, interes, adquisición, motos eléctricas"> 
+    
+    <!-- Linßk a Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+      <!-- Link para animación -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/> -->
+
+    <!-- Link a mi CSS -->
+    <link rel="stylesheet" href="estilos.css">
+
+    <!-- Link a Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam&display=swap" rel="stylesheet">
+    
+    <title>PRESTAMOS</title>
+    <link rel="shortcut icon" href="/assets/logo.jpeg">
+
+    <!-- Link a mi Js -->
+   <script src="main.js" defer></script>
+
+</head>
+<header>
+<!-- menu de bootstap-->
+    <div class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+        <a class="nav-link motoneta"  href="index.html">PRESTAMOS</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav"></div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="logomoto">
+   <h1 id="titulo"> Bienvenido a PRESTAMOS MOTONETA </h1>
+
+   <img class="logo" src="/assets/logo.jpeg" alt="" width="250" height="200">
+   
+   </div>
+<main>
+
+  <body>
+     
+    <h2> Elegí entre los 3 modelos más vendidos de Kymko </h2>
+
+    <div class="card-group">
+        <div class="card" data-valor-predeterminado="1250000">
+          <img src="/assets/moto1.webp" class="card-img-top" alt="Imagen de moto Kymko Agility 125 Rs" width="250" height="800">
+          <div class="card-body">
+            <h5 class="card-title">Kymko Agility 125 Rs</h5>
+            <p class="card-text"> Scooter versatil para ciudad, línea urbana y bajo consumo. Ideal para microtransporte.</p>
+            <p class="card-text"><small class="text-body-secondary"> ARS 1.250.000 .- </small></p>
+          </div>
+        </div>
+        <div class="card" data-valor-predeterminado="1900000">
+          <img src="/assets/moto2.webp" class="card-img-top" alt="Imagen de moto Kymko Like 125 width="250" height="800">
+          <div class="card-body">
+            <h5 class="card-title"> Kymko Like 125 </h5>
+            <p class="card-text"> Excelente Scooter para la vida en la ciudad. Muy economica, con prestaciones de gama premium. </p>
+            <p class="card-text"><small class="text-body-secondary"> ARS 1.900.000 .- </small></p>
+          </div>
+        </div>
+        <div class="card" data-valor-predeterminado="3500000">
+          <img src="/assets/moto3.webp" class="card-img-top" alt="Imagen de moto Kymko Xtown 350" width="250" height="800">
+          <div class="card-body">
+            <h5 class="card-title"> Kymko Xtown 350 </h5>
+            <p class="card-text"> Scooter de alta cilindrada preparada tanto para entornos urbanos como de ruta. </p>
+            <p class="card-text"><small class="text-body-secondary"> ARS 3.500.000 .- </small></p>
+          </div>
+        </div>
+      </div>
+   
+      <div class="contenedor"></div>
+
+   <h3> Cotizá y Simula tu préstamo personal</h2>
+    <h4> 1.Elegi tu moto    2.Completá Tasa y Plazo    3. Listo!</h4>
+
+    <div class="contenedor"></div>
+
+   <form id="FormularioPrestamo">
+        <label for="Monto">Monto del Préstamo:</label>
+        <input type="number" id="Monto" required>
+
+        <label for="TasaDeInteres">Tasa de Interés TNA (%):</label>
+        <input type="number" id="TasaDeInteres" step="0.1" required>
+
+        <label for="Plazo">Plazo (meses):</label>
+        <input type="number" id="Plazo"required>
+    
+        <button class="Boton" id="myBtn" type="button" onclick="calcularCuota()">Calcular Cuota Mensual</button> 
+        <div class="contenedor"></div>
+    </form>
+
+    <h3 id="CuotaMensual">Cuota Mensual: $0.00</h3>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="app.js"></script>
+     
+    <script>
+        function calcularCuota() {
+        // De los datos cargados en formulario, calcula...
+            var monto = parseFloat(document.getElementById('Monto').value);
+            var tasaInteres = parseFloat(document.getElementById('TasaDeInteres').value) / 100 / 12;
+            var plazo = parseInt(document.getElementById('Plazo').value);
+
+        // Cuota mensual, amortizando por mes
+            var cuotaMensual = (monto * tasaInteres) / (1 - Math.pow(1 + tasaInteres, -plazo));
+
+        // Muestra resultado de la cuota mensual
+            document.getElementById('CuotaMensual').innerText = "Cuota Mensual: $" + cuotaMensual.toFixed(2);
+        }
+    </script>
+   
+    <!-- <p id="datos"></p> -->
+
+    <div class="contenedor"></div>
+
+  </body>
+
+    <footer class="home">
+        <p> * Todos los derechos reservados * </p>
+    </footer>   
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+</html>
